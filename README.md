@@ -25,3 +25,5 @@
 - test_add_book_in_favorites_adds_book_successfully — добавление книги в избранное.
 - test_delete_book_from_favorites_removes_book — удаление книги из избранного.
 - test_get_list_of_favorites_books_returns_correct_list — получение списка избранных книг.
+- test_get_book_genre - возвращает None если книги нет
+- test_get_books_with_specific_genre возвращает список книг заданного жанра
