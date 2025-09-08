@@ -139,4 +139,28 @@ class TestBooksCollector:
         assert isinstance(favorites, list)
         assert 'Фаворит 1' in favorites
         assert 'Фаворит 2' in favorites
+
         assert len(favorites) == 2
+
+# Метод get_book_genre возвращает None если книги нет 
+class TestBooksCollector:
+    def test_get_book_genre_returns_none_if_book_not_exists(self):
+        collector = BooksCollector()
+           
+        assert collector.get_book_genre('Несуществующая книга') is None 
+        # Метод get_books_with_specific_genre возвращает список книг заданного жанра
+class TestBooksCollector:
+    def test_get_books_with_specific_genre_returns_books(self):
+        collector = BooksCollector()
+
+        collector.add_new_book('Властелин колец')
+        collector.set_book_genre('Властелин колец', 'Фантастика')
+
+        collector.add_new_book('Мстители')
+        collector.set_book_genre('Мстители', 'Фантастика')
+
+        result = collector.get_books_with_specific_genre('Фантастика')
+
+        assert 'Властелин колец' in result
+        assert 'Мстители' in result
+        assert len(result) == 2
