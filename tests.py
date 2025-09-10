@@ -146,10 +146,12 @@ class TestBooksCollector:
 class TestBooksCollector:
     def test_get_book_genre_returns_none_if_book_not_exists(self):
         collector = BooksCollector()
-           
-        assert collector.get_book_genre('Несуществующая книга') is None 
+        collector.add_new_book('Простоквашино')
+        collector.set_book_genre('Проквашино', 'Комедия' )
+
+        assert collector.get_book_genre('Простоквашино') == 'Комедия'
         # Метод get_books_with_specific_genre возвращает список книг заданного жанра
-class TestBooksCollector:
+class TestBooksCollector:00
     def test_get_books_with_specific_genre_returns_books(self):
         collector = BooksCollector()
 
@@ -159,4 +161,5 @@ class TestBooksCollector:
         collector.set_book_genre('Мстители', 'Фэнтези')
 
         assert collector.get_books_with_specific_genre(Фантастикаэ) == ['Властелин колец']
+
 
