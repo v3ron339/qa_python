@@ -151,7 +151,7 @@ class TestBooksCollector:
 
         assert collector.get_book_genre('Простоквашино') == 'Комедия'
         # Метод get_books_with_specific_genre возвращает список книг заданного жанра
-class TestBooksCollector:00
+class TestBooksCollector:
     def test_get_books_with_specific_genre_returns_books(self):
         collector = BooksCollector()
 
@@ -161,5 +161,6 @@ class TestBooksCollector:00
         collector.set_book_genre('Мстители', 'Фэнтези')
 
         assert collector.get_books_with_specific_genre(Фантастикаэ) == ['Властелин колец']
+
 
 
