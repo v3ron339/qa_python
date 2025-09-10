@@ -154,13 +154,9 @@ class TestBooksCollector:
         collector = BooksCollector()
 
         collector.add_new_book('Властелин колец')
-        collector.set_book_genre('Властелин колец', 'Фантастика')
-
         collector.add_new_book('Мстители')
-        collector.set_book_genre('Мстители', 'Фантастика')
+        collector.set_book_genre('Властелин колец', 'Фантастика')
+        collector.set_book_genre('Мстители', 'Фэнтези')
 
-        result = collector.get_books_with_specific_genre('Фантастика')
+        assert collector.get_books_with_specific_genre(Фантастикаэ) == ['Властелин колец']
 
-        assert 'Властелин колец' in result
-        assert 'Мстители' in result
-        assert len(result) == 2
