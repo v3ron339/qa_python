@@ -23,8 +23,7 @@ class TestBooksCollector:
 
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
-    # Здесь я проверю что Книги Жанра Ужасы и Детективы не попадают в Раздел Детские
-class TestBooksCollector:    
+    # Здесь я проверю что Книги Жанра Ужасы и Детективы не попадают в Раздел Детские 
          
     def test_book_with_age_rating_not_in_children_list(self):
      collector = BooksCollector()
@@ -39,7 +38,6 @@ class TestBooksCollector:
      assert 'Семейка Адемс' not in children_books
      assert 'Шерлок Холмс' not in children_books
 # Здесб я проверю книгу на отсутствие жанра
-class TestBooksCollector:
      
      def test_new_book_has_no_genre_by_default(self):
       collector = BooksCollector()
@@ -48,7 +46,6 @@ class TestBooksCollector:
 
       assert collector.get_book_genre('Книга без жанра') == ''
 # Жанр можно присвоить, только если он есть в списке доступных
-class TestBooksCollector: 
     
      def test_set_book_genre_valid_genre_fantastika(self):
       collector = BooksCollector()
@@ -62,8 +59,7 @@ class TestBooksCollector:
         collector.add_new_book('Частушки')
         collector.set_book_genre('Частушки', 'Комедии')
         assert collector.get_book_genre('Частушки') == 'Комедии'
-#  Возвращение книги без возрастного рейтинга для детей 
-class TestBooksCollector:   
+#  Возвращение книги без возрастного рейтинга для детей  
     
      def test_get_books_for_children_returns_only_safe_books(self):
         collector = BooksCollector()
@@ -78,15 +74,13 @@ class TestBooksCollector:
 
         assert 'Маша и медведь' in children_books
         assert 'Фильм ужасов' not in children_books
-        #  Присваеваем значение несуществующей книги = None, если книги нет
-class TestBooksCollector:      
+        #  Присваеваем значение несуществующей книги = None, если книги нет 
       
         def test_get_book_genre_returns_none_if_book_not_exists(self):
           collector = BooksCollector()
 
           assert collector.get_book_genre('Честная книга') is None
           #  Метод get_books_with_specific_genre возвращает список книг заданного жанра
-class TestBooksCollector:
         def test_get_books_with_specific_genre_returns_books(self):
          collector = BooksCollector()
 
@@ -102,7 +96,6 @@ class TestBooksCollector:
          assert 'Мстители' in result
          assert len(result) == 2
          # Метод add_book_in_favorites добавляет книгу в избранное
-class TestBooksCollector:
     def test_add_book_in_favorites_adds_book(self):
         collector = BooksCollector()
 
@@ -112,7 +105,6 @@ class TestBooksCollector:
         assert 'Любимая книга' in collector.get_list_of_favorites_books()
 
          # Метод delete_book_from_favorites удаляет книгу из избранного
-class TestBooksCollector:     
     def test_delete_book_from_favorites_removes_book(self):
         collector = BooksCollector()
 
@@ -124,7 +116,6 @@ class TestBooksCollector:
         assert 'Книга для удаления' not in collector.get_list_of_favorites_books()
 
          # Метод get_list_of_favorites_books возвращает список избранных книг
-class TestBooksCollector:      
     def test_get_list_of_favorites_books_returns_list(self):
         collector = BooksCollector()
 
@@ -142,25 +133,30 @@ class TestBooksCollector:
 
         assert len(favorites) == 2
 
-# Метод get_book_genre возвращает None если книги нет 
-class TestBooksCollector:
-    def test_get_book_genre_returns_none_if_book_not_exists(self):
+# Метод set_book_genre  
+    def test_set_book_genre_returns_none_if_book_not_exists(self):
         collector = BooksCollector()
         collector.add_new_book('Простоквашино')
-        collector.set_book_genre('Проквашино', 'Комедия' )
+        collector.set_book_genre('Проквашино', 'Комедия')
 
-        assert collector.get_book_genre('Простоквашино') == 'Комедия'
+        assert collector.books_genre('Простоквашино') == 'Комедия'
         # Метод get_books_with_specific_genre возвращает список книг заданного жанра
-class TestBooksCollector:
-    def test_get_books_with_specific_genre_returns_books(self):
+    def test_get_book_genre_returns_value_from_dict(self):
         collector = BooksCollector()
+        collector.books_genre = {'Книга 1', 'Комедия'}
 
-        collector.add_new_book('Властелин колец')
-        collector.add_new_book('Мстители')
-        collector.set_book_genre('Властелин колец', 'Фантастика')
-        collector.set_book_genre('Мстители', 'Фэнтези')
+        assert collector.get_book_genre('Книга 1') == 'Комедия'
 
-        assert collector.get_books_with_specific_genre(Фантастикаэ) == ['Властелин колец']
+    def test_get_books_with_specific_genre_returns_correct_list(self):
+        collector = BooksCollector()
+        collector.books_genre = {
+            'Книга 1': 'Комедия',
+            'Книга 2': 'Ужасы',
+            'Книга 3': 'Комедия'
+        }
+
+        result = collector.get_books_with_specific_genre('Комедия')
+        assert result == ['Книга 1', 'Книга 3']    
 
 
 
